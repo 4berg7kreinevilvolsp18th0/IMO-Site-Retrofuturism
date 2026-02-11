@@ -1,0 +1,466 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   РЕТРОФУТУРИЗМ / SYNTHWAVE
+   ============================================ */
+
+:root {
+  --font-heading: 'Nasalization', 'Arial Black', sans-serif;
+  --font-body: var(--font-ubuntu), 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-brutal: cubic-bezier(0.2, 0, 0, 1);
+  --color-deep: #0D0221;
+  --color-navy: #150535;
+  --color-ocean: #7B2FBE;
+  --color-wave: #9B59D0;
+  --color-sky: #C77DFF;
+  --color-foam: #E0AAFF;
+  --color-neon: #FF6EC7;
+  --color-magenta: #FF00FF;
+  --color-lime: #00D4FF;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.25s var(--ease-brutal);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* ============================================
+   FOCUS & ДОСТУПНОСТЬ
+   ============================================ */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-neon);
+  outline-offset: 2px;
+  border-radius: 0;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.skip-to-content {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-neon);
+  color: var(--color-deep);
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: top 0.2s;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* ============================================
+   АНИМАЦИИ — БАЗОВЫЕ
+   ============================================ */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s var(--ease-brutal) forwards;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.6s var(--ease-brutal) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s var(--ease-brutal) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s var(--ease-brutal) forwards;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* ============================================
+   АНИМАЦИИ — РЕТРОФУТУРИЗМ
+   ============================================ */
+
+@keyframes chromePulse {
+  0%, 100% {
+    text-shadow:
+      0 0 10px rgba(255, 110, 199, 0.5),
+      0 0 20px rgba(255, 110, 199, 0.3),
+      0 0 40px rgba(255, 110, 199, 0.15);
+  }
+  50% {
+    text-shadow:
+      0 0 20px rgba(255, 110, 199, 0.7),
+      0 0 40px rgba(255, 110, 199, 0.4),
+      0 0 80px rgba(255, 110, 199, 0.2),
+      0 0 120px rgba(0, 212, 255, 0.1);
+  }
+}
+
+@keyframes gridScroll {
+  0%   { transform: perspective(400px) rotateX(60deg) translateY(0); }
+  100% { transform: perspective(400px) rotateX(60deg) translateY(60px); }
+}
+
+@keyframes retroScanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes retroGlow {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 0.6; }
+}
+
+/* ============================================
+   УТИЛИТЫ — РЕТРО
+   ============================================ */
+
+/* Хромированный текст вместо глитча */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(180deg, #FF6EC7 0%, #FFB6DD 30%, #FF6EC7 50%, #00D4FF 70%, #FF6EC7 100%);
+  background-size: 100% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease-in-out infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  display: none;
+}
+
+.neon-glow {
+  text-shadow:
+    0 0 10px rgba(255, 110, 199, 0.5),
+    0 0 30px rgba(255, 110, 199, 0.2);
+}
+
+.neon-glow-pulse {
+  animation: chromePulse 3s ease-in-out infinite;
+}
+
+/* Сканлайн */
+.scanlines {
+  position: relative;
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 110, 199, 0.015) 2px,
+    rgba(255, 110, 199, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scanline-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-neon), transparent);
+  animation: retroScanline 6s linear infinite;
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.grid-drift {
+  animation: retroGlow 10s ease-in-out infinite;
+}
+
+.neon-sweep {
+  animation: retroGlow 8s ease-in-out infinite alternate;
+}
+
+.dot-pulse {
+  animation: retroGlow 6s ease-in-out infinite;
+}
+
+/* ============================================
+   КАРТОЧКИ — РЕТРО С НЕОНОВЫМИ КРАЯМИ
+   ============================================ */
+
+.brutal-card {
+  background: rgba(123, 47, 190, 0.08);
+  border: 1px solid rgba(255, 110, 199, 0.15);
+  border-radius: 0;
+  box-shadow: 0 0 15px rgba(255, 110, 199, 0.08);
+  transition: all 0.3s var(--ease-brutal);
+  position: relative;
+}
+
+.brutal-card:hover {
+  background: rgba(123, 47, 190, 0.15);
+  border-color: rgba(255, 110, 199, 0.4);
+  box-shadow:
+    0 0 20px rgba(255, 110, 199, 0.2),
+    0 0 40px rgba(255, 110, 199, 0.05),
+    inset 0 0 20px rgba(255, 110, 199, 0.03);
+  transform: translateY(-2px);
+}
+
+.brutal-card-rounded {
+  background: rgba(123, 47, 190, 0.08);
+  border: 1px solid rgba(255, 110, 199, 0.15);
+  border-radius: 0;
+  box-shadow: 0 0 15px rgba(255, 110, 199, 0.08);
+  transition: all 0.3s var(--ease-brutal);
+}
+
+.brutal-card-rounded:hover {
+  border-color: rgba(255, 110, 199, 0.4);
+  box-shadow: 0 0 25px rgba(255, 110, 199, 0.2);
+  transform: translateY(-2px);
+}
+
+.program-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(123, 47, 190, 0.08);
+  border: 1px solid rgba(255, 110, 199, 0.1);
+  border-radius: 0;
+  box-shadow: 0 0 10px rgba(255, 110, 199, 0.05);
+  transition: all 0.3s var(--ease-brutal);
+}
+
+.program-card:hover {
+  border-color: var(--accent-color, rgba(255, 110, 199, 0.4));
+  box-shadow: 0 0 25px color-mix(in srgb, var(--accent-color, #FF6EC7) 30%, transparent);
+  transform: translateY(-2px);
+}
+
+.glass-card {
+  background: rgba(123, 47, 190, 0.08);
+  border: 1px solid rgba(255, 110, 199, 0.15);
+  border-radius: 0;
+  box-shadow: 0 0 15px rgba(255, 110, 199, 0.08);
+  transition: all 0.3s var(--ease-brutal);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 110, 199, 0.4);
+  box-shadow: 0 0 25px rgba(255, 110, 199, 0.2);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   КНОПКИ CTA — РЕТРО
+   ============================================ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: 0;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 400;
+  border: 1px solid transparent;
+  box-shadow: 0 0 15px rgba(255, 110, 199, 0.2);
+  transition: all 0.3s var(--ease-brutal);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(255, 110, 199, 0.4), 0 0 60px rgba(255, 110, 199, 0.1);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: 0;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 400;
+  border: 1px solid rgba(255, 110, 199, 0.3);
+  box-shadow: 0 0 10px rgba(255, 110, 199, 0.1);
+  transition: all 0.3s var(--ease-brutal);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-neon);
+  color: var(--color-neon);
+  box-shadow: 0 0 20px rgba(255, 110, 199, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   СЕКЦИЯ-РАЗДЕЛИТЕЛЬ
+   ============================================ */
+
+.section-title {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* ============================================
+   СКРОЛЛБАР — РЕТРО
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 110, 199, 0.3);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 110, 199, 0.5);
+  box-shadow: 0 0 10px rgba(255, 110, 199, 0.3);
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .glitch-text {
+    animation: none !important;
+    -webkit-text-fill-color: var(--color-neon);
+    background: none;
+  }
+
+  .neon-glow-pulse,
+  .grid-drift,
+  .dot-pulse,
+  .neon-sweep,
+  .scanline-bar {
+    animation: none !important;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .brutal-card,
+  .glass-card {
+    background: transparent !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+
+  header, footer {
+    display: none !important;
+  }
+}
